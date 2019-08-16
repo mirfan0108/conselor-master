@@ -1,0 +1,19 @@
+.bg-regist {
+    // position: relative;
+    --background: url('../../../assets/images/bg_app.png') 0 0/100% 100% no-repeat;
+}
+input, select {
+    border: 2px solid var(--ion-color-primary, #020c97)  ;
+    border-radius: 10px ;
+    padding: 5px 17px;
+    width: 80%;
+  }
+
+  .footer-login {
+    position: fixed;
+    left: 10%;
+    bottom: 5%;
+    width: 80%;
+    color: white;
+    text-align: center;
+ }

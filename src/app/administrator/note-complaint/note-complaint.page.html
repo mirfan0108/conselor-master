@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-center>Data Pengaduan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-content>
+    <ion-row justify-content-center>
+      <ion-avatar>
+        <img src="{{dataComplaint.profile.avatar}}">
+      </ion-avatar>
+    </ion-row>
+  </ion-card-content>
+  <div class="divider"></div>
+  <ion-card-content>
+    <ion-row>
+      <ion-col size="5">Nama</ion-col>
+      <ion-col size="1">:</ion-col>
+      <ion-col size="6">{{dataComplaint.profile.name}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">Tanggal Lahir</ion-col>
+      <ion-col size="1">:</ion-col>
+      <ion-col size="6">{{normalizeDate(dataComplaint.profile.birth)}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">Jenis Kelamin</ion-col>
+      <ion-col size="1">:</ion-col>
+      <ion-col size="6">{{dataComplaint.profile.gender == 'men' ? 'Pria':'Perempuan'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">KTP</ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <img src="{{dataComplaint.profile.ktp}}">
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">Jenis Kekerasan</ion-col>
+      <ion-col size="1">:</ion-col>
+      <ion-col size="6">{{dataComplaint.text_category}}</ion-col>
+    </ion-row>
+  </ion-card-content>
+  <div class="divider"></div>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Catatan</ion-label>
+      <ion-textarea rows="6" [(ngModel)]="dataComplaint.note" placeholder="masukan catatan"></ion-textarea>
+    </ion-item>
+    <ion-row justify-content-center>
+      <ion-col size="3"></ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" color="warning" (click)="sendNote()">
+          KIRIM
+        </ion-button>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-content>

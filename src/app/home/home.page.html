@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary" *ngIf="segmentValue == 'complaint'">
+    <ion-title text-center>
+      Data Pengaduan
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary" *ngIf="segmentValue == 'chat'">
+    <ion-title text-center>
+      Konseling
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary" *ngIf="segmentValue == 'schedule'">
+    <ion-title text-center>
+      Jadwal Konselor
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary" *ngIf="segmentValue == 'conseling'">
+    <ion-title text-center>
+      Data Konseling
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="segmentValue">
+    <ng-template appAdministrator [ngSwitchCase]="'complaint'" ></ng-template>
+    <ng-template appWeekly [ngSwitchCase]="'schedule'" ></ng-template>
+    <ng-template appListChat [ngSwitchCase]="'chat'"></ng-template>
+    <ng-template appListConseling [ngSwitchCase]="'conseling'" ></ng-template>
+  </div>
+    
+</ion-content>
+
+<ion-footer >
+  <ion-row justify-content-center text-center no-margin no-padding *ngIf="role == 9">
+    <ion-col size="3">
+      
+      <ion-button (click)="controlConseling('complaint')" expand="block" fill="clear" no-margin no-padding>
+        <ion-icon src="{{segmentValue == 'complaint' ? '../../assets/images/svg/data-pengaduan-active.svg':'../../assets/images/svg/data-pengaduan.svg'}}"></ion-icon>
+      </ion-button>
+      <ion-label color="{{segmentValue == 'complaint' ? 'warning':'dark'}}" style="font-size: 8pt" no-margin no-padding>Data Pengaduan</ion-label>
+      <div class="dot-active" *ngIf="complaintTotal != 0">
+          {{complaintTotal}}
+        </div>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button (click)="controlConseling('schedule')" expand="block" fill="clear" no-margin no-padding>
+        <ion-icon src="{{segmentValue == 'schedule' ? '../../assets/images/svg/calendar-active.svg' : '../../assets/images/svg/calendar.svg'}}"></ion-icon>
+      </ion-button>
+      <ion-label color="{{segmentValue == 'schedule' ? 'warning':'dark'}}" style="font-size: 8pt" no-margin no-padding>Jadwal</ion-label>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button (click)="controlConseling('chat')" expand="block" fill="clear" no-margin no-padding>
+        <ion-icon src="{{segmentValue == 'chat' ? '../../assets/images/svg/chatbox-active.svg':'../../assets/images/svg/chatbox.svg'}}"></ion-icon>
+      </ion-button>
+      <ion-label color="{{segmentValue == 'chat' ? 'warning':'dark'}}" style="font-size: 8pt" no-margin no-padding>Konseling</ion-label>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button (click)="controlConseling('conseling')" expand="block" fill="clear" no-margin no-padding>
+        <ion-icon src="{{segmentValue == 'conseling' ? '../../assets/images/svg/folder-active.svg':'../../assets/images/svg/folder.svg'}}"></ion-icon>
+      </ion-button>
+      <ion-label color="{{segmentValue == 'conseling' ? 'warning':'dark'}}" style="font-size: 8pt" no-margin no-padding>Data Konseling</ion-label>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button (click)="logoutConfirm()" expand="block" fill="clear" no-margin no-padding>
+        <ion-icon src="../../assets/images/svg/close.svg"></ion-icon>
+      </ion-button>
+      <ion-label style="font-size: 8pt" no-margin no-padding> Keluar</ion-label>
+    </ion-col>
+  </ion-row>
+
+  <ion-segment  color="warning" (ionChange)="segmentChanged($event)" [(ngModel)]="segmentValue" *ngIf="role == 1">
+    <ion-segment-button value="chat">
+      <ion-icon src="{{segmentValue == 'chat' ? '../../assets/images/svg/chatbox-active.svg':'../../assets/images/svg/chatbox.svg'}}"></ion-icon>
+      <label style="font-size: 6px;">Konseling</label>
+    </ion-segment-button>
+    <ion-segment-button value="schedule">
+      <ion-icon src="{{segmentValue == 'schedule' ? '../../assets/images/svg/calendar-active.svg' : '../../assets/images/svg/calendar.svg'}}"></ion-icon>
+      <label style="font-size: 6px;">Jadwal</label>
+    </ion-segment-button>
+    <ion-segment-button value="conseling" >
+      <ion-icon src="{{segmentValue == 'conseling' ? '../../assets/images/svg/folder-active.svg':'../../assets/images/svg/folder.svg'}}"></ion-icon>
+      <label style="font-size: 6px;">Data Konseling</label>
+    </ion-segment-button>
+    <ion-segment-button (click)="logoutConfirm()" value="logout">
+      <ion-icon src="../../assets/images/svg/close.svg"></ion-icon>
+      <label style="font-size: 6px;">Keluar</label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer>

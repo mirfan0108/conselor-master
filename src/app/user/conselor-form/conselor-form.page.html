@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start"> 
+      <ion-button (click)="closeModal()">
+        <ion-icon name="arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-center>Formulir Konselor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-regist">
+  
+  <label style="margin-left: 6%;margin-top: 4%;
+  position: relative;
+  top: 10px; color: white">Jenis kekerasan yang ditangani</label>
+  <ion-row justify-content-center>
+    <ion-card>
+        <ion-card-content>
+          <ion-item *ngFor="let category of categories" no-margin no-padding>
+              <p style="font-size: 10pt; margin-left: 5px;" >{{category.text}}</p>
+              <ion-checkbox slot="end" [(ngModel)]="category.checked" ></ion-checkbox>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+      <label style="margin-left: 12%; color: white">Status Admin</label>
+      <div align="center">
+        <select  [(ngModel)]="role">
+          <option selected disabled value="">Pilih Status Admin</option>
+          <option value="1">Tidak</option>
+          <option value="9">Ya</option>
+        </select>
+      </div>
+
+    <ion-row justify-content-center>
+        <ion-button color="warning" (click)="saveData()">Simpan</ion-button>
+      </ion-row>
+</ion-content>

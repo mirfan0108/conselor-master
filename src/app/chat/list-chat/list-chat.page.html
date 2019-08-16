@@ -1,0 +1,18 @@
+<ion-list *ngIf="listConseling">
+  <ion-item *ngFor="let data of listConseling" (click)="openChatRoom(data)">
+    <ion-avatar slot="start">
+      <img src="{{data.patient.avatar}}">
+    </ion-avatar>
+    <ion-note color="{{checkUser(data.patientId) ? 'success':'dark'}}" slot="end">
+      {{checkUser(data.patientId) ? 'Online':'Offline'}}
+    </ion-note>
+    <ion-label>
+      <small>
+        {{data.patient.name}}
+      </small>
+    </ion-label>
+  </ion-item>
+</ion-list>
+<div class="data-kosong" *ngIf="listConseling.length == 0 || !listConseling" align="center">
+  <p>Data Konseling Anda Masih Kosong</p>
+</div>

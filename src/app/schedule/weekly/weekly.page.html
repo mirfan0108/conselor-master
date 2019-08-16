@@ -1,0 +1,76 @@
+<!-- <ion-header>
+  <ion-toolbar  color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateTo('conselor')">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Jadwal Saya</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-content>
+  
+</ion-content> -->
+
+<!-- <div *ngFor="let day of weekly">
+    <ion-card-content no-padding no-margin>
+      <ion-row justify-content-center>
+        <ion-col size="4">
+          <div class="divider"></div>
+        </ion-col>
+        <ion-col size="4" >
+          <p style="text-align: center">
+              {{day.day}}
+          </p>
+        </ion-col>
+        <ion-col size="4">
+          <div class="divider"></div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+    <ion-card-content no-padding no-margin>
+      <ion-list>
+        <ion-item *ngFor="let time of day.time">
+          <ion-label>{{time.text}}</ion-label>
+          <ion-checkbox slot="end" color="warning" [(ngModel)]="time.isSelected" (ionChange)="doChange()"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </div>
+
+  <div style="padding: 10px" *ngIf="isChanged">
+    <ion-button expand="block" color="warning" (click)="doSubmit()" >Simpan</ion-button>
+  </div> -->
+  <ion-calendar [options]="optionsCalendar" format="YYYY-MM-DD" [(ngModel)]="selectedDate" (click)="selectDate()"></ion-calendar>
+  <div class="divider"></div>
+  <ion-row justify-content-start no-padding>
+    <b style="    padding-top: 3px;
+    padding-left: 10px;">Jam Konseling</b>
+  </ion-row>
+  <ion-card-content>
+    <ion-row justify-content-start no-padding no-margin *ngIf="times.length > 0">
+      <ion-col size="2" *ngFor="let time of times" style="margin-right: 5px;">
+        <ion-badge color="primary" *ngIf="time.status != 0">{{time.time}}</ion-badge>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center *ngIf="times.length == 0" >
+      <small>
+          {{firstTime ? text_null : 'Anda Tidak Memiliki Jam'}}
+      </small>
+    </ion-row>
+    <ion-row *ngIf="times.length > 0">
+      <ion-col size="1">
+        <div class="color-info"></div> 
+      </ion-col>
+      <ion-col size="9">
+        <ion-label><small>Jadwal Jaga</small></ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+  <div class="fab-btn-custom" align="center">
+    <button class="btn-custom" (click)="setSchedule()">
+      <img src="../../../assets/images/svg/calendar.svg">
+    </button><br>
+    <label style=" color:#5454c7;   font-size: 7pt;">Edit Jadwal</label>
+  </div>

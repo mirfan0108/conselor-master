@@ -1,0 +1,42 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>Data Pengaduan</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="doLogout()">
+        <ion-icon src="../../assets/images/svg/close.svg">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-list *ngIf="complaintApp.length">
+  <ion-item *ngFor="let conselor of stayed" (click)="openDetail(conselor)">
+    <ion-avatar>
+      <img src="{{conselor.profile.avatar}}">
+    </ion-avatar>
+    <ion-label margin>
+      {{conselor.profile.name}} <br>
+      <small>{{getText(conselor.category_id)}}</small>
+    </ion-label>
+    <ion-note slot="end">{{normalizeDate(conselor.created_on)}} <br><p style="text-align: right">{{normalizeTime(conselor.created_on)}}</p></ion-note>
+    <div class="dot-nw" *ngIf="conselor.status == 0"></div>
+    <div class="dot-ig" *ngIf="conselor.status == 1"></div>
+    <div class="dot-up" *ngIf="conselor.status == 2"></div>
+  </ion-item>
+  <div *ngIf="approved.length > 0">
+    <ion-item *ngFor="let approve of approved" (click)="openDetail(approve)">
+      <ion-avatar>
+        <img src="{{approve.profile.avatar}}">
+      </ion-avatar>
+      <ion-label margin>
+        {{approve.profile.name}}  <br>
+        <small>{{getText(approve.category_id)}}</small>
+      </ion-label>
+      <ion-note slot="end"> 
+        <p style="text-align: right">Nama Konselor</p>
+        <p style="text-align: right"><b style="color:chartreuse; " >{{approve.conselor_profile.name}}</b></p>
+      </ion-note>
+    </ion-item>
+  </div>
+</ion-list>

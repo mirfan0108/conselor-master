@@ -1,0 +1,46 @@
+<ion-list *ngIf="listConseling"> 
+    <div *ngFor="let conseling of listConseling">
+      <!-- <ion-card-content>
+        <ion-row justify-content-center>
+          <ion-col size="4">
+            <div class="divider"></div>
+          </ion-col>
+          <ion-col size="4" >
+            <p style="text-align: center">
+                {{conseling.schedule.date}}
+            </p>
+          </ion-col>
+          <ion-col size="4">
+            <div class="divider"></div>
+          </ion-col>
+  
+        </ion-row>
+      </ion-card-content> -->
+      <ion-item >
+        <ion-avatar slot="start">
+          <img  src="{{conseling.patient.avatar}}">
+        </ion-avatar>
+        <ion-label>
+            {{conseling.patient.name}} <br>
+            <small style="font-size: 8pt">{{ getCategory(conseling.complaint_data.category_id)}}</small>
+            <br>
+        </ion-label>
+        <ion-note slot="end">
+          {{conseling.schedule.date}}
+          <br>
+          <small style="color: #19b983;
+                        font-size: 7pt;">{{conseling.schedule.time}}</small>
+        </ion-note>
+        
+      </ion-item>
+      <ion-card-content no-padding no-margin>
+          <ion-row no-padding no-margin justify-content-end>
+            <ion-button size="small" color="warning" (click)="openResult(conseling)">Hasil Konseling</ion-button>
+          </ion-row>
+      </ion-card-content>
+    </div>
+</ion-list>
+
+<div class="data-kosong" *ngIf="listConseling.length == 0" align="center">
+  <p>Belum ada data konseling yang masuk</p>
+</div>

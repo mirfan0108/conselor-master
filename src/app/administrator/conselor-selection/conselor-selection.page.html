@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-center>Pilih Konselor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="conselors.length > 0">
+    <ion-item *ngFor="let conselor of conselors" (click)="selected(conselor)"> 
+      <ion-avatar>
+        <img src="{{conselor.profile.avatar}}" >
+      </ion-avatar>
+      <ion-label margin>
+        {{conselor.profile.name}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-row justify-content-center margin *ngIf="conselors.length == 0">
+    <ion-label color="primary">
+      konselor tidak tersedia dalam kategori ini
+    </ion-label>
+  </ion-row>
+</ion-content>
